@@ -1,0 +1,78 @@
+Task 1
+// 1. Create a constructor function called Animal that accepts a parameter name.
+// 2. Inside the constructor, assign the name parameter to an instance property called
+// this.name.
+// 3. Add a method to Animal's prototype called speak that logs the phrase "My name is
+// [name]."
+// 4. Create two instances of Animal with different names.
+// 5. Call the speak method on both instances to see the different outputs.
+
+function Animal (name) {
+    this.name = name,
+    this.speak = function() {
+        console.log(`My name is ${this.name}`);
+    }    
+}
+
+
+let rabbit = new Animal('Mark') 
+let cat = new Animal('Alice');
+let dog = new Animal('Bob');
+cat.__proto__ = rabbit;
+dog.__proto__ = rabbit
+
+console.log(rabbit.speak());
+console.log(cat.speak());
+console.log(dog.speak());
+
+Task 2
+// 1. Create a function Person that takes a firstName and lastName.
+// 2. Add a method fullName to Person.prototype that returns the full name.
+// 3. Create object student from that function constructor.
+// 4. Verify that student has access to the fullName method.
+
+function Person (firstName, lastName) {
+    this.firstName = firstName,
+    this.lastName = lastName;
+    this.fullName = function () {
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+
+let student = new Person ('John', 'Smith');
+student.__proto__ = Person;
+console.log(student.fullName());
+
+Task 3
+// What will be the output and explain why
+
+const obj1 = {};
+const obj2 = {};
+console.log(obj1.prototype === obj2.__proto__); // ktpi false, vorovhetev .prototype karox enq dimel miayn function constructornerin ev classerin, prototype unen miayn nranq. es depqum unenq erku hat literal pakagcerov stexcvac hasarak object.
+
+Task 4
+// What will be the output and explain why
+
+function foo() {}
+console.log(foo.prototype === foo.__proto__); // false, vorovhetev foo.prototype ev foo.__proto__ hxvum en tarber objectnerin (arajin@ hxvuma Function constructorin, erkrord@ hxvuma uxxaki Function.Prototype_in)
+
+Task 5
+// What will be the output and explain why
+
+function foo1() {}
+function foo2() {}
+console.log(foo1.__proto__ === foo2.__proto__); // true, qani vor erkusn el jarangvum en Function.prototype_ic
+console.log(foo1.prototype === foo2.prototype); // false, vorovhetev prototype unen miayn Function construktorner@, isk new operatorov stexcvac objectner@ irar havasar chen, inchqan el vor nman linen irar iranc data_ov
+
+Task 6
+// What will be the output and explain why
+
+let foo = () => {};
+console.log(foo.prototype === Function.prototype); // false
+
+Task 7
+// What will be the output and explain why
+
+let str = "";
+console.log(str.prototype === String.prototype); // false
+console.log(str.__proto__ === String.prototype); // true
